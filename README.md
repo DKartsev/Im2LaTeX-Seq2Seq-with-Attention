@@ -1,1 +1,36 @@
-# Im2LaTeX-Seq2Seq-with-Attention
+# Im2LaTeX 
+
+Этот ноутбук обучает модель image-to-LaTeX, которая преобразует изображения формул в строки LaTeX.
+Он использует CNN-энкодер + Transformer-декодер,
+SentencePiece токенизацию и beam search при декодировании.
+
+## Возможности
+- Загрузка датасета im2latex с Hugging Face (авто‑fallback между известными репозиториями)
+- SentencePiece BPE (без ручного словаря)
+- CNN-энкодер + Transformer-декодер
+- Beam search для генерации
+- Early stopping + сохранение лучшей модели
+- Визуализация формул в Colab через MathJax
+
+## Быстрый старт (Colab)
+1. [Откройте](https://colab.research.google.com/drive/1FR-Bl9TuuBoWNKqHRRf6Aqi1uxS5vo_J?usp=sharing) ноутбук `im2latex_seq2seq_attention_(3) (2).ipynb` в Colab.
+2. Запустите ячейки сверху вниз (рекомендуется рестарт runtime).
+3. Логи по эпохам выводят лосс; лучшая модель сохраняется в `best_model.pt`.
+
+## Основные параметры
+Меняются в ячейке гиперпараметров:
+- `MAX_TRAIN`, `MAX_VALID`: ограничение размера выборки
+- `IMG_H`, `IMG_W`: размеры изображения после препроцессинга
+- `MAX_LEN`: максимальная длина формулы
+- `N_EPOCHS`: число эпох
+- `SP_VOCAB_SIZE`: размер словаря SentencePiece (может автоуменьшаться)
+- `PATIENCE`, `MIN_DELTA`: ранняя остановка
+
+## Примечания
+- Если формулы отображаются как текст, перезапустите ячейку визуализации.
+- При нехватке памяти уменьшите `IMG_W` или `BATCH_SIZE`.
+
+## Файлы
+- Ноутбук: `im2latex_seq2seq_attention_(3) (2).ipynb`
+- Чекпоинт: `best_model.pt`
+
